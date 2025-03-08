@@ -10,7 +10,50 @@
     Title="Sort">
 
     <Grid>
-        <ListView x:Name="FilesListView">
-        </ListView>
+        <TextBlock x:Name="ConfigStatus" Margin="5"/>
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ListView x:Name="FilesListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="{Binding FileName}" VerticalAlignment="Center"/>
+
+                            <ComboBox Grid.Column="1" x:Name="Combo" 
+                              ItemsSource="{Binding ElementName=FilesListView, Path=DataContext.Subjects}"
+                              SelectedItem="{Binding TargetSubject, Mode=TwoWay}"
+                              DisplayMemberPath="Name"/>
+
+                            <Button Grid.Column="2" 
+                            Content="Move File" 
+                            Click="MoveButton_Click"
+                            Tag="{Binding}"
+                            IsEnabled="{Binding CanMove}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Move all the files" Click="MoveAllButton_Click" Margin="5"/>
+                <Button Content="Automatically sort" Click="AutoSortButton_Click" Margin="5"/>
+            </StackPanel>
+
+        </Grid>
+
+
+        <Border x:Name="AppTitleBar" Grid.Column="1" VerticalAlignment="Top">
+            <TextBlock x:Name="AppTitle" VerticalAlignment="Top" Margin="16,8,0,0" FontSize="12"/>
+        </Border>
+
     </Grid>
 </Window>

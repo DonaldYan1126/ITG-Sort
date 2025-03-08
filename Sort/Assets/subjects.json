@@ -1,0 +1,16 @@
+[
+  {
+    "Name": "Mathematics",
+    "Patterns": [
+      "math|数学|shuxue",
+      "^\\d{4}_calc_.*\\.pdf$"
+    ]
+  },
+  {
+    "Name": "Physics",
+    "Patterns": [
+      "physics|物理|wuli",
+      "^exp_\\d+_.*\\.docx?$"
+    ]
+  }
+]
